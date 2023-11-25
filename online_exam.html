@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Web Programming Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color:lightblue ;
+        }
+
+        #examContainer {
+            background-color: white;
+            border: 5px solid white;
+   padding: 20px;
+        }
+
+        form {
+            text-align: left;
+	background-color:white;
+        }
+
+        #result {
+            margin-top: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<div id="examContainer">
+    <h1 align="center"><u>Web Programming Quiz</u></h1>
+
+    <form id="examForm">
+<h3>1. What does HTML stand for?</h3>
+    <label>
+        <input type="radio" name="q1" value="Hypertext Markup Language">Hypertext Markup Language
+    </label>
+    <label>
+        <input type="radio" name="q1" value="Hyperlink Markup Language">Hyperlink Markup Language
+    </label>
+    <label>
+        <input type="radio" name="q1" value="Home tool Markup Language">Home tool Markup Language
+    </label>
+
+    <h3>2. Who is the father of HTML?</h3>
+    <label>
+        <input type="radio" name="q2" value="Rasmus Lerdorf">Rasmus Lerdorf
+    </label>
+    <label>
+        <input type="radio" name="q2" value="Tim Berners-Lee">Tim Berners-Lee
+    </label>
+    <label>
+        <input type="radio" name="q2" value="Brendan Eich">Brendan Eich
+    </label>
+
+    <h3>3. input tag is an: </h3>
+    <label>
+        <input type="radio" name="q3" value="a format tag">a format tag
+    </label>
+    <label>
+        <input type="radio" name="q3" value="an empty tag">an empty tag
+    </label>
+    <label>
+        <input type="radio" name="q3" value="All of the above">All of the above
+    </label>
+        <br>
+        <br>
+        <input type="button" value="Submit" onclick="submitExam()">
+    </form>
+
+    <div id="result" style="display: none;">
+        <h2>Result:</h2>
+        <p id="score"></p>
+        <h3>Correct Answers:</h3>
+        <ul id="correctAnswers"></ul>
+    </div>
+</div>
+
+<script>
+function submitExam() {
+        // Questions and Correct Answers
+       const correctAnswers = {
+            q1:'Hypertext Markup Language',
+            q2:'Tim Berners-Lee',
+            q3:'an empty tag',
+        };
+
+        // Get user's answers
+        const userAnswers = {
+            q1: document.querySelector('input[name="q1"]:checked').value,
+            q2: document.querySelector('input[name="q2"]:checked').value,
+            q3: document.querySelector('input[name="q3"]:checked').value,
+        };
+
+        // Calculate score
+        let score = 0;
+        for (const question in correctAnswers) {
+            if (correctAnswers[question] === userAnswers[question]) {
+                score++;
+            }
+        }
+
+        // Display result
+        document.getElementById('score').innerText = `Score: ${score} out of 3`;
+        const correctAnswersList = document.getElementById('correctAnswers');
+        correctAnswersList.innerHTML = '';
+
+        for (const question in correctAnswers) {
+            const li = document.createElement('li');
+            li.innerHTML = `<strong>Question ${question.slice(1)}:</strong> ${correctAnswers[question]}`;
+            correctAnswersList.appendChild(li);
+        }
+
+        // Show result div
+        document.getElementById('result').style.display = 'block';
+    }
+</script>
+</body>
+</html>
