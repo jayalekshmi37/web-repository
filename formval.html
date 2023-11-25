@@ -1,0 +1,100 @@
+<html lang="en">
+<head>
+ 
+  <title>Registration Form</title>
+  <style>
+    body{
+display:flex;
+flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      justify-content: center;
+      height: 90vh;
+      margin: 0;
+      background-color: pink;
+    }
+
+
+    form {
+      text-align: left;
+background-color: white;
+    }
+
+    h1 {
+      text-align: center;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <h1><u>REGISTRATION FORM</u></h1>
+ 
+  <form name="reg" onsubmit="return validateform()">
+<!--<h1>REGISTRATION FORM</H1>-->
+    Name *: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+<input type="text" name="fname" >
+<br><br>
+Date of Birth:&nbsp; &nbsp;
+<input type="text" name="dob"><br><br>
+Gender:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+<input type="radio" name="gender">
+<label name="Male">Male</label>
+<input type="radio" name="gender">
+<label name="Female">Female</label><br><br>
+Address: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; <textarea rows="5" cols="30" placeholder="Enter full address "></textarea><br><br>
+Email *: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+<input type="text" name="mail"><br><br>
+Phone *: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+<input type="text" name="mobile"><br><br>
+Course opted: &nbsp; &nbsp; &nbsp;<input type="text" name="course"><br><br> &nbsp; &nbsp; &nbsp
+&nbsp; &nbsp;  
+<input type="submit">&nbsp; <input type="reset">
+  </form>
+ 
+
+  <script>
+    function validateform()
+{
+var fname = document.forms["reg"]["fname"].value;
+var dob = document.forms["reg"]["dob"].value;
+var mail = document.forms["reg"]["mail"].value;
+var mobile = document.forms["reg"]["mobile"].value;
+var course = document.forms["reg"]["course"].value;
+if (fname === "")
+{
+        alert("Name is required");
+        return false;
+        }
+if (dob === "")          
+       {
+        alert("Please enter your dob ");
+        return false;
+}
+if (mobile === "" || isNaN(mobile) || mobile.length !== 10)
+  {
+        alert("Invalid Mobile Number");
+        return false;
+    }
+if (course === "")
+{
+      alert("Please enter course");
+       return false;
+        }
+if (mail === "" || !isValidEmail(mail))
+{
+        alert("Invalid Email Address");
+        return false;
+    }
+return true;
+}
+
+function isValidEmail(mail)
+{
+    var valid = /\S+@\S/;
+    return valid.test(mail);
+}
+
+  </script>
+</body>
+</html>
+
